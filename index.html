@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .container {
+            padding: 20px;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        h2 {
+            border-bottom: 2px solid #333;
+            padding-bottom: 5px;
+        }
+
+        .buttons {
+            margin: 20px 0;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .buttons button {
+            padding: 10px 15px;
+            border: none;
+            background-color: #333;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .buttons button:hover {
+            background-color: #555;
+        }
+
+        .products {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .product-card {
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            flex: 1 1 250px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .product-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #222;
+            color: #fff;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .buttons {
+                flex-direction: column;
+            }
+
+            .product-card {
+                flex: 1 1 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>DUPONT ACCESSORIES</h1>
+    <p>Advertising Phones, Electronics, and Cars</p>
+</header>
+
+<div class="container">
+    <section>
+        <h2>My Portfolio</h2>
+        <p>Welcome! I'm a seller of high-quality phones, electronics, and cars. Browse below to view some of our products.</p>
+    </section>
+
+    <section class="buttons">
+        <button onclick="scrollToSection('phones')">Phones</button>
+        <button onclick="scrollToSection('electronics')">Electronics</button>
+        <button onclick="scrollToSection('cars')">Cars</button>
+    </section>
+
+    <section id="phones">
+        <h2>Phones</h2>
+        <div class="products">
+            <div class="product-card">
+                <img src="iphone.jpg" alt="iPhone 13 Pro">
+                <h3>iPhone 13 Pro</h3>
+                <p>Price: $999</p>
+            </div>
+            <div class="product-card">
+                <img src="samsung.jpg" alt="Samsung Galaxy S22">
+                <h3>Samsung Galaxy S22</h3>
+                <p>Price: $899</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="electronics">
+        <h2>Electronics</h2>
+        <div class="products">
+            <div class="product-card">
+                <img src="dell.jpg" alt="Dell XPS 13">
+                <h3>Dell XPS 13</h3>
+                <p>Price: $1,200</p>
+            </div>
+            <div class="product-card">
+                <img src="tv.jpg" alt="Samsung Smart TV">
+                <h3>Samsung Smart TV</h3>
+                <p>Price: $550</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="cars">
+        <h2>Cars</h2>
+        <div class="products">
+            <div class="product-card">
+                <img src="corolla.jpg" alt="Toyota Corolla 2018">
+                <h3>Toyota Corolla 2018</h3>
+                <p>Price: $12,000</p>
+            </div>
+            <div class="product-card">
+                <img src="civic.jpg" alt="Honda Civic 2020">
+                <h3>Honda Civic 2020</h3>
+                <p>Price: $15,000</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Contact</h2>
+        <p>Email: <a href="mailto:dupont22@gmail.com">dupont22@gmail.com</a></p>
+        <p>Phone: <a href="tel:+254741398595">0741 398 595</a></p>
+    </section>
+</div>
+
+<footer>
+    &copy; 2025 Your Name. All rights reserved.
+</footer>
+
+<script>
+    function scrollToSection(id) {
+        document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+    }
+</script>
+
+</body>
+</html>
