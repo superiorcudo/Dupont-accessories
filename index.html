@@ -1,139 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Duponts' Online Store</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: #f4f4f4;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Duponts' Online Store</title>
+<style>
+    /* Background Gradient */
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(to bottom right, #4a90e2, #8e44ad);
+    }
 
-        header {
-            background-color: #333;
-            color: white;
-            padding: 20px 0;
-            text-align: center;
-        }
+    header {
+        background-color: rgba(0,0,0,0.5);
+        color: white;
+        padding: 20px 0;
+        text-align: center;
+    }
 
-        .container {
-            padding: 20px;
-            max-width: 1000px;
-            margin: auto;
-        }
+    .container {
+        padding: 20px;
+        max-width: 1000px;
+        margin: auto;
+        color: #fff;
+    }
 
-        h2 {
-            border-bottom: 2px solid #333;
-            padding-bottom: 5px;
-        }
+    h2 {
+        border-bottom: 2px solid #fff;
+        padding-bottom: 5px;
+    }
 
+    .buttons {
+        margin: 20px 0;
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    /* Lime Green Buttons */
+    .buttons button {
+        background-color: #a4de02; /* lime green */
+        color: #fff;
+        border-radius: 5px;
+        border: none;
+        padding: 10px 15px;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+
+    .buttons button:hover {
+        background-color: #76b900; /* darker lime green */
+    }
+
+    .products {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .product-card {
+        background: rgba(255,255,255,0.1);
+        padding: 10px;
+        border-radius: 8px;
+        flex: 1 1 250px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        text-align: center;
+        cursor: pointer;
+        transition: transform 0.2s;
+    }
+
+    .product-card:hover {
+        transform: scale(1.03);
+    }
+
+    .product-card img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 5px;
+    }
+
+    footer {
+        text-align: center;
+        padding: 15px;
+        background-color: rgba(0,0,0,0.7);
+        color: #fff;
+        margin-top: 20px;
+    }
+
+    @media (max-width: 600px) {
         .buttons {
-            margin: 20px 0;
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .buttons button {
-            padding: 10px 15px;
-            border: none;
-            background-color: #333;
-            color: white;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-        .buttons button:hover {
-            background-color: #555;
-        }
-
-        .products {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .product-card {
-            background: white;
-            padding: 10px;
-            border-radius: 8px;
-            flex: 1 1 250px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            text-align: center;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-
-        .product-card:hover {
-            transform: scale(1.03);
-        }
-
-        .product-card img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 5px;
-        }
-
-        footer {
-            text-align: center;
-            padding: 15px;
-            background-color: #222;
-            color: #fff;
-            margin-top: 20px;
-        }
-
-        @media (max-width: 600px) {
-            .buttons {
-                flex-direction: column;
-            }
-
-            .product-card {
-                flex: 1 1 100%;
-            }
-        }
-
-        /* Modal Styling */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.8);
-            justify-content: center;
-            align-items: center;
             flex-direction: column;
-            color: #fff;
-            z-index: 1000;
-            padding: 20px;
         }
+        .product-card {
+            flex: 1 1 100%;
+        }
+    }
 
-        .modal img {
-            max-width: 300px;
-            margin-bottom: 15px;
-            border-radius: 5px;
-        }
+    /* Modal */
+    .modal {
+        display: none;
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background-color: rgba(0,0,0,0.8);
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        z-index: 1000;
+    }
 
-        .close {
-            position: absolute;
-            top: 20px; right: 30px;
-            font-size: 30px;
-            cursor: pointer;
-        }
+    .modal-content {
+        background-color: #fff;
+        color: #333;
+        padding: 20px;
+        border-radius: 10px;
+        max-width: 500px;
+        width: 100%;
+        position: relative;
+    }
 
-        .modal-content {
-            background-color: #222;
-            padding: 20px;
-            border-radius: 8px;
-            text-align: center;
-        }
+    .modal-content img {
+        max-width: 100%;
+        border-radius: 5px;
+        margin-bottom: 15px;
+    }
 
-        .modal-content p {
-            margin: 5px 0;
-        }
-    </style>
+    .close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 25px;
+        font-weight: bold;
+        color: #ff4c4c; /* red */
+        background: rgba(255,255,255,0.3);
+        border-radius: 50%;
+        padding: 5px 10px;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+
+    .close:hover {
+        background: rgba(255,255,255,0.6);
+    }
+
+    .modal-content p {
+        margin: 5px 0;
+    }
+</style>
 </head>
 <body>
 
@@ -215,51 +230,63 @@
 
 <!-- Modal -->
 <div id="productModal" class="modal">
-    <span class="close" onclick="closeModal()">&times;</span>
     <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
         <img id="modalImage" src="" alt="">
         <h2 id="modalName"></h2>
+        <p id="modalBrand"></p>
+        <p id="modalModel"></p>
         <p id="modalStorage"></p>
         <p id="modalScreen"></p>
         <p id="modalBattery"></p>
+        <p id="modalCamera"></p>
+        <p id="modalProcessor"></p>
+        <p id="modalRam"></p>
+        <p id="modalColors"></p>
         <p id="modalPrice"></p>
     </div>
 </div>
 
 <script>
-    function scrollToSection(id) {
-        document.getElementById(id).scrollIntoView({ behavior: "smooth" });
-    }
+function scrollToSection(id) {
+    document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+}
 
-    // Product Data
-    const products = [
-        { name: "iPhone 13 Pro", image: "iphone.jpg", price: "$499", storage: "128GB", screen: "6.1 inch", battery: "3095 mAh" },
-        { name: "Samsung Galaxy S22", image: "samsung.jpg", price: "$350", storage: "128GB", screen: "6.2 inch", battery: "3700 mAh" },
-        { name: "Dell XPS 13", image: "dell.jpg", price: "$800", storage: "512GB SSD", screen: "13.3 inch", battery: "52 Wh" },
-        { name: "Samsung Smart TV", image: "tv.jpg", price: "$1500", storage: "N/A", screen: "55 inch", battery: "Plug-in" },
-        { name: "Toyota Corolla 2018", image: "corolla.jpg", price: "$12,000", storage: "N/A", screen: "N/A", battery: "Petrol Engine" },
-        { name: "Honda Civic 2020", image: "civic.jpg", price: "$15,000", storage: "N/A", screen: "N/A", battery: "Petrol Engine" }
-    ];
+// Rich Product Data
+const products = [
+    { name: "iPhone 13 Pro", brand: "Apple", model: "13 Pro", image: "iphone.jpg", price: "$499", storage: "128GB", screen: "6.1 inch OLED", battery: "3095 mAh", camera: "12MP Triple", processor: "A15 Bionic", ram: "6GB", colors: "Silver, Graphite, Gold, Sierra Blue" },
+    { name: "Samsung Galaxy S22", brand: "Samsung", model: "Galaxy S22", image: "samsung.jpg", price: "$350", storage: "128GB", screen: "6.2 inch AMOLED", battery: "3700 mAh", camera: "50MP Triple", processor: "Exynos 2200", ram: "8GB", colors: "Black, White, Green, Pink" },
+    { name: "Dell XPS 13", brand: "Dell", model: "XPS 13", image: "dell.jpg", price: "$800", storage: "512GB SSD", screen: "13.3 inch", battery: "52 Wh", camera: "HD Webcam", processor: "Intel i7 11th Gen", ram: "16GB", colors: "Silver, Black" },
+    { name: "Samsung Smart TV", brand: "Samsung", model: "QLED 55\"", image: "tv.jpg", price: "$1500", storage: "N/A", screen: "55 inch", battery: "Plug-in", camera: "N/A", processor: "Quad-Core", ram: "N/A", colors: "Black" },
+    { name: "Toyota Corolla 2018", brand: "Toyota", model: "Corolla 2018", image: "corolla.jpg", price: "$12,000", storage: "N/A", screen: "N/A", battery: "Petrol Engine", camera: "N/A", processor: "1.8L Engine", ram: "N/A", colors: "White, Grey, Black" },
+    { name: "Honda Civic 2020", brand: "Honda", model: "Civic 2020", image: "civic.jpg", price: "$15,000", storage: "N/A", screen: "N/A", battery: "Petrol Engine", camera: "N/A", processor: "2.0L Engine", ram: "N/A", colors: "Red, Black, Silver" }
+];
 
-    // Show product details
-    function showDetails(productName) {
-        const product = products.find(p => p.name === productName);
-        document.getElementById('modalImage').src = product.image;
-        document.getElementById('modalName').innerText = product.name;
-        document.getElementById('modalStorage').innerText = "Storage: " + product.storage;
-        document.getElementById('modalScreen').innerText = "Screen: " + product.screen;
-        document.getElementById('modalBattery').innerText = "Battery: " + product.battery;
-        document.getElementById('modalPrice').innerText = "Price: " + product.price;
-        document.getElementById('productModal').style.display = 'flex';
-    }
+// Show modal with product details
+function showDetails(productName) {
+    const product = products.find(p => p.name === productName);
+    document.getElementById('modalImage').src = product.image;
+    document.getElementById('modalName').innerText = product.name;
+    document.getElementById('modalBrand').innerText = "Brand: " + product.brand;
+    document.getElementById('modalModel').innerText = "Model: " + product.model;
+    document.getElementById('modalStorage').innerText = "Storage: " + product.storage;
+    document.getElementById('modalScreen').innerText = "Screen: " + product.screen;
+    document.getElementById('modalBattery').innerText = "Battery: " + product.battery;
+    document.getElementById('modalCamera').innerText = "Camera: " + product.camera;
+    document.getElementById('modalProcessor').innerText = "Processor: " + product.processor;
+    document.getElementById('modalRam').innerText = "RAM: " + product.ram;
+    document.getElementById('modalColors').innerText = "Available Colors: " + product.colors;
+    document.getElementById('modalPrice').innerText = "Price: " + product.price;
+    document.getElementById('productModal').style.display = 'flex';
+}
 
-    // Close modal
-    function closeModal() {
-        document.getElementById('productModal').style.display = 'none';
-    }
+function closeModal() {
+    document.getElementById('productModal').style.display = 'none';
+}
 </script>
 
 </body>
 </html>
+
 
 
