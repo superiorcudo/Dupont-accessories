@@ -1,266 +1,261 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Duponts' Online Store</title>
-
-<!-- ✅ Favicon added here -->
-<link rel="icon" type="image/x-icon" href="favicon.ico">
-
-<style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Duponts' Online Store</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <style>
     /* Background Gradient */
     body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background: linear-gradient(to bottom right, #4a90e2, #8e44ad);
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom right, #4a90e2, #8e44ad);
     }
 
     header {
-        background-color: rgba(0,0,0,0.5);
-        color: white;
-        padding: 20px 0;
-        text-align: center;
+      background-color: rgba(0,0,0,0.5);
+      color: white;
+      padding: 20px 0;
+      text-align: center;
     }
 
     .container {
-        padding: 20px;
-        max-width: 1000px;
-        margin: auto;
-        color: #fff;
+      padding: 20px;
+      max-width: 1000px;
+      margin: auto;
+      color: #fff;
     }
 
     h2 {
-        border-bottom: 2px solid #fff;
-        padding-bottom: 5px;
+      border-bottom: 2px solid #fff;
+      padding-bottom: 5px;
     }
 
     .buttons {
-        margin: 20px 0;
-        display: flex;
-        gap: 10px;
-        flex-wrap: wrap;
+      margin: 20px 0;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
     }
 
     /* Lime Green Buttons */
     .buttons button {
-        background-color: #a4de02; /* lime green */
-        color: #fff;
-        border-radius: 5px;
-        border: none;
-        padding: 10px 15px;
-        cursor: pointer;
-        transition: background 0.3s;
+      background-color: #a4de02; /* lime green */
+      color: #fff;
+      border-radius: 5px;
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+      transition: background 0.3s;
     }
 
     .buttons button:hover {
-        background-color: #76b900; /* darker lime green */
+      background-color: #76b900; /* darker lime green */
     }
 
     .products {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
     }
 
     .product-card {
-        background: rgba(255,255,255,0.1);
-        padding: 10px;
-        border-radius: 8px;
-        flex: 1 1 250px;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        text-align: center;
-        cursor: pointer;
-        transition: transform 0.2s;
+      background: rgba(255,255,255,0.1);
+      padding: 10px;
+      border-radius: 8px;
+      flex: 1 1 250px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.2s;
     }
 
     .product-card:hover {
-        transform: scale(1.03);
+      transform: scale(1.03);
     }
 
     .product-card img {
-        max-width: 100%;
-        height: auto;
-        border-radius: 5px;
+      max-width: 100%;
+      height: auto;
+      border-radius: 5px;
     }
 
     footer {
-        text-align: center;
-        padding: 15px;
-        background-color: rgba(0,0,0,0.7);
-        color: #fff;
-        margin-top: 20px;
+      text-align: center;
+      padding: 15px;
+      background-color: rgba(0,0,0,0.7);
+      color: #fff;
+      margin-top: 20px;
     }
 
     @media (max-width: 600px) {
-        .buttons {
-            flex-direction: column;
-        }
-        .product-card {
-            flex: 1 1 100%;
-        }
+      .buttons {
+        flex-direction: column;
+      }
+      .product-card {
+        flex: 1 1 100%;
+      }
     }
 
     /* Modal */
     .modal {
-        display: none;
-        position: fixed;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-        background-color: rgba(0,0,0,0.8);
-        justify-content: center;
-        align-items: center;
-        padding: 20px;
-        z-index: 1000;
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      z-index: 1000;
     }
 
     .modal-content {
-        background-color: #fff;
-        color: #333;
-        padding: 20px;
-        border-radius: 10px;
-        max-width: 500px;
-        width: 100%;
-        position: relative;
+      background-color: #fff;
+      color: #333;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 500px;
+      width: 100%;
+      position: relative;
     }
 
     .modal-content img {
-        max-width: 100%;
-        border-radius: 5px;
-        margin-bottom: 15px;
+      max-width: 100%;
+      border-radius: 5px;
+      margin-bottom: 15px;
     }
 
     .close {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        font-size: 25px;
-        font-weight: bold;
-        color: #ff4c4c; /* red */
-        background: rgba(255,255,255,0.3);
-        border-radius: 50%;
-        padding: 5px 10px;
-        cursor: pointer;
-        transition: background 0.3s;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 25px;
+      font-weight: bold;
+      color: #ff4c4c; /* red */
+      background: rgba(255,255,255,0.3);
+      border-radius: 50%;
+      padding: 5px 10px;
+      cursor: pointer;
+      transition: background 0.3s;
     }
 
     .close:hover {
-        background: rgba(255,255,255,0.6);
+      background: rgba(255,255,255,0.6);
     }
 
     .modal-content p {
-        margin: 5px 0;
+      margin: 5px 0;
     }
-</style>
+  </style>
 </head>
 <body>
 
 <header>
-    <img src="logo.png" alt="Dupont Accessories Logo" style="height:60px; display:block; margin:auto;">
-    <h1>DUPONT ACCESSORIES</h1>
-    <p>Advertising Phones, Electronics, and Cars</p>
+  <h1>DUPONT ACCESSORIES</h1>
+  <p>Advertising Phones, Electronics, and Cars</p>
 </header>
 
 <div class="container">
-    <section>
-        <h2>My Online store</h2>
-        <p>Welcome! I'm a seller of high-quality phones, electronics, and cars. Browse below to view some of my products.</p>
-    </section>
+  <section>
+    <h2>My Online store</h2>
+    <p>Welcome! I'm a seller of high-quality phones, electronics, and cars. Browse below to view some of my products.</p>
+  </section>
 
-    <section class="buttons">
-        <button onclick="scrollToSection('phones')">Phones</button>
-        <button onclick="scrollToSection('electronics')">Electronics</button>
-        <button onclick="scrollToSection('cars')">Cars</button>
-    </section>
+  <section class="buttons">
+    <button onclick="scrollToSection('phones')">Phones</button>
+    <button onclick="scrollToSection('electronics')">Electronics</button>
+    <button onclick="scrollToSection('cars')">Cars</button>
+  </section>
 
-    <section id="phones">
-        <h2>Phones</h2>
-        <div class="products">
-            <div class="product-card" onclick="showDetails('iPhone 13 Pro')">
-                <img src="iphone.jpg" alt="iPhone 13 Pro">
-                <h3>iPhone 13 Pro</h3>
-                <p>Price: $499</p>
-            </div>
-            <div class="product-card" onclick="showDetails('Samsung Galaxy S22')">
-                <img src="samsung.jpg" alt="Samsung Galaxy S22">
-                <h3>Samsung Galaxy S22</h3>
-                <p>Price: $350</p>
-            </div>
-        </div>
-    </section>
+  <section id="phones">
+    <h2>Phones</h2>
+    <div class="products">
+      <div class="product-card" onclick="showDetails('iPhone 13 Pro')">
+        <img src="iphone.jpg" alt="iPhone 13 Pro">
+        <h3>iPhone 13 Pro</h3>
+        <p>Price: $499</p>
+      </div>
+      <div class="product-card" onclick="showDetails('Samsung Galaxy S22')">
+        <img src="samsung.jpg" alt="Samsung Galaxy S22">
+        <h3>Samsung Galaxy S22</h3>
+        <p>Price: $350</p>
+      </div>
+    </div>
+  </section>
 
-    <section id="electronics">
-        <h2>Electronics</h2>
-        <div class="products">
-            <div class="product-card" onclick="showDetails('Dell XPS 13')">
-                <img src="dell.jpg" alt="Dell XPS 13">
-                <h3>Dell XPS 13</h3>
-                <p>Price: $800</p>
-            </div>
-            <div class="product-card" onclick="showDetails('Samsung Smart TV')">
-                <img src="tv.jpg" alt="Samsung Smart TV">
-                <h3>Samsung Smart TV</h3>
-                <p>Price: $1500</p>
-            </div>
-        </div>
-    </section>
+  <section id="electronics">
+    <h2>Electronics</h2>
+    <div class="products">
+      <div class="product-card" onclick="showDetails('Dell XPS 13')">
+        <img src="dell.jpg" alt="Dell XPS 13">
+        <h3>Dell XPS 13</h3>
+        <p>Price: $800</p>
+      </div>
+      <div class="product-card" onclick="showDetails('Samsung Smart TV')">
+        <img src="tv.jpg" alt="Samsung Smart TV">
+        <h3>Samsung Smart TV</h3>
+        <p>Price: $1500</p>
+      </div>
+    </div>
+  </section>
 
-    <section id="cars">
-        <h2>Cars</h2>
-        <div class="products">
-            <div class="product-card" onclick="showDetails('Toyota Corolla 2018')">
-                <img src="corolla.jpg" alt="Toyota Corolla 2018">
-                <h3>Toyota Corolla 2018</h3>
-                <p>Price: $12,000</p>
-            </div>
-            <div class="product-card" onclick="showDetails('Honda Civic 2020')">
-                <img src="civic.jpg" alt="Honda Civic 2020">
-                <h3>Honda Civic 2020</h3>
-                <p>Price: $15,000</p>
-            </div>
-        </div>
-    </section>
+  <section id="cars">
+    <h2>Cars</h2>
+    <div class="products">
+      <div class="product-card" onclick="showDetails('Toyota Corolla 2018')">
+        <img src="corolla.jpg" alt="Toyota Corolla 2018">
+        <h3>Toyota Corolla 2018</h3>
+        <p>Price: $12,000</p>
+      </div>
+      <div class="product-card" onclick="showDetails('Honda Civic 2020')">
+        <img src="civic.jpg" alt="Honda Civic 2020">
+        <h3>Honda Civic 2020</h3>
+        <p>Price: $15,000</p>
+      </div>
+    </div>
+  </section>
 
-    <section>
-        <h2>Contact</h2>
-        <p>Email: <a href="mailto:dupont22@gmail.com">dupont22@gmail.com</a></p>
-        <p>Phone: <a href="tel:+254741398595">0741 398 595</a></p>
-    </section>
+  <section>
+    <h2>Contact</h2>
+    <p>Email: <a href="mailto:dupont22@gmail.com">dupont22@gmail.com</a></p>
+    <p>Phone: <a href="tel:+254741398595">0741 398 595</a></p>
+  </section>
 </div>
 
 <footer>
-    &copy; 2025 Dupont Accessories. All rights reserved.
+  &copy; 2025 Dupont Accessories. All rights reserved.
 </footer>
 
 <!-- Modal -->
 <div id="productModal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <img id="modalImage" src="" alt="">
-        <h2 id="modalName"></h2>
-        <p id="modalBrand"></p>
-        <p id="modalModel"></p>
-        <p id="modalStorage"></p>
-        <p id="modalScreen"></p>
-        <p id="modalBattery"></p>
-        <p id="modalCamera"></p>
-        <p id="modalProcessor"></p>
-        <p id="modalRam"></p>
-        <p id="modalColors"></p>
-        <p id="modalPrice"></p>
-    </div>
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img id="modalImage" src="" alt="">
+    <h2 id="modalName"></h2>
+    <p id="modalBrand"></p>
+    <p id="modalModel"></p>
+    <p id="modalStorage"></p>
+    <p id="modalScreen"></p>
+    <p id="modalBattery"></p>
+    <p id="modalCamera"></p>
+    <p id="modalProcessor"></p>
+    <p id="modalRam"></p>
+    <p id="modalColors"></p>
+    <p id="modalPrice"></p>
+  </div>
 </div>
 
 <script>
-function scrollToSection(id) {
+  function scrollToSection(id) {
     document.getElementById(id).scrollIntoView({ behavior: "smooth" });
-}
+  }
 
-// Rich Product Data
-const products = [
-    { name: "iPhone 13 Pro", brand: "Apple", model: "13 Pro", image: "iphone.jpg", price: "$499", storage: "128GB", screen: "6.1 inch OLED", battery: "3095 mAh", camera: "12MP Triple", processor: "A15 Bionic", ram: "6GB", colors: "Silver, Graphite, Gold, Sierra Blue" },
-    { name: "
+  const products = [
+    { name: "iPhone 13 Pro", brand: "Apple", model: "13 Pro", image: "iphone.jpg", price: "$499", storage: "128GB", screen:
+
 
 
 
