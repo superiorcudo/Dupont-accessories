@@ -4,6 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Duponts' Online Store</title>
+
+<!-- ✅ Favicon added here -->
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+
 <style>
     /* Background Gradient */
     body {
@@ -153,6 +157,7 @@
 <body>
 
 <header>
+    <img src="logo.png" alt="Dupont Accessories Logo" style="height:60px; display:block; margin:auto;">
     <h1>DUPONT ACCESSORIES</h1>
     <p>Advertising Phones, Electronics, and Cars</p>
 </header>
@@ -255,38 +260,8 @@ function scrollToSection(id) {
 // Rich Product Data
 const products = [
     { name: "iPhone 13 Pro", brand: "Apple", model: "13 Pro", image: "iphone.jpg", price: "$499", storage: "128GB", screen: "6.1 inch OLED", battery: "3095 mAh", camera: "12MP Triple", processor: "A15 Bionic", ram: "6GB", colors: "Silver, Graphite, Gold, Sierra Blue" },
-    { name: "Samsung Galaxy S22", brand: "Samsung", model: "Galaxy S22", image: "samsung.jpg", price: "$350", storage: "128GB", screen: "6.2 inch AMOLED", battery: "3700 mAh", camera: "50MP Triple", processor: "Exynos 2200", ram: "8GB", colors: "Black, White, Green, Pink" },
-    { name: "Dell XPS 13", brand: "Dell", model: "XPS 13", image: "dell.jpg", price: "$800", storage: "512GB SSD", screen: "13.3 inch", battery: "52 Wh", camera: "HD Webcam", processor: "Intel i7 11th Gen", ram: "16GB", colors: "Silver, Black" },
-    { name: "Samsung Smart TV", brand: "Samsung", model: "QLED 55\"", image: "tv.jpg", price: "$1500", storage: "N/A", screen: "55 inch", battery: "Plug-in", camera: "N/A", processor: "Quad-Core", ram: "N/A", colors: "Black" },
-    { name: "Toyota Corolla 2018", brand: "Toyota", model: "Corolla 2018", image: "corolla.jpg", price: "$12,000", storage: "N/A", screen: "N/A", battery: "Petrol Engine", camera: "N/A", processor: "1.8L Engine", ram: "N/A", colors: "White, Grey, Black" },
-    { name: "Honda Civic 2020", brand: "Honda", model: "Civic 2020", image: "civic.jpg", price: "$15,000", storage: "N/A", screen: "N/A", battery: "Petrol Engine", camera: "N/A", processor: "2.0L Engine", ram: "N/A", colors: "Red, Black, Silver" }
-];
+    { name: "
 
-// Show modal with product details
-function showDetails(productName) {
-    const product = products.find(p => p.name === productName);
-    document.getElementById('modalImage').src = product.image;
-    document.getElementById('modalName').innerText = product.name;
-    document.getElementById('modalBrand').innerText = "Brand: " + product.brand;
-    document.getElementById('modalModel').innerText = "Model: " + product.model;
-    document.getElementById('modalStorage').innerText = "Storage: " + product.storage;
-    document.getElementById('modalScreen').innerText = "Screen: " + product.screen;
-    document.getElementById('modalBattery').innerText = "Battery: " + product.battery;
-    document.getElementById('modalCamera').innerText = "Camera: " + product.camera;
-    document.getElementById('modalProcessor').innerText = "Processor: " + product.processor;
-    document.getElementById('modalRam').innerText = "RAM: " + product.ram;
-    document.getElementById('modalColors').innerText = "Available Colors: " + product.colors;
-    document.getElementById('modalPrice').innerText = "Price: " + product.price;
-    document.getElementById('productModal').style.display = 'flex';
-}
-
-function closeModal() {
-    document.getElementById('productModal').style.display = 'none';
-}
-</script>
-
-</body>
-</html>
 
 
 
