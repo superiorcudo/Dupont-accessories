@@ -6,221 +6,191 @@
 <title>Duponts' Online Store</title>
 <link rel="icon" href="favicon.png" type="image/png">
 <style>
-body {
-  font-family: Arial, sans-serif;
-  margin: 0; padding: 0;
-  background: linear-gradient(to bottom right, #4a90e2, #8e44ad);
-  color: #fff;
-}
-header {
-  text-align: center;
-  padding: 20px;
-  background: rgba(0,0,0,0.5);
-}
-header h1 { margin: 0; }
-.container { max-width: 1000px; margin: auto; padding: 20px; }
-.buttons { display: flex; gap: 10px; flex-wrap: wrap; margin: 20px 0; }
-.buttons button {
-  background: #a4de02; color: #fff; border: none; padding: 10px 15px;
-  border-radius: 5px; cursor: pointer; transition: 0.3s;
-}
-.buttons button:hover { background: #76b900; }
-.products { display: flex; flex-wrap: wrap; gap: 20px; }
-.product-card {
-  background: rgba(255,255,255,0.1); padding: 10px; border-radius: 8px;
-  flex: 1 1 250px; text-align: center; cursor: pointer;
-  transition: transform 0.2s;
-}
+body { font-family: Arial, sans-serif; margin:0; padding:0; background:linear-gradient(to bottom right,#4a90e2,#8e44ad); color:#fff; }
+header { text-align:center; padding:20px; background:rgba(0,0,0,0.5);}
+header h1 { margin:0; }
+.container { max-width:1000px; margin:auto; padding:20px; }
+.buttons { display:flex; gap:10px; flex-wrap:wrap; margin:20px 0; }
+.buttons button { background:#a4de02; color:#fff; border:none; padding:10px 15px; border-radius:5px; cursor:pointer; transition:0.3s; }
+.buttons button:hover { background:#76b900; }
+.products { display:flex; flex-wrap:wrap; gap:20px; }
+.product-card { background:rgba(255,255,255,0.1); padding:10px; border-radius:8px; flex:1 1 250px; text-align:center; cursor:pointer; transition: transform 0.2s; }
 .product-card:hover { transform: scale(1.03); }
-.product-card img { max-width: 100%; border-radius: 5px; }
-footer { text-align: center; padding: 15px; background: rgba(0,0,0,0.7); margin-top:20px; }
-
-@media(max-width:600px) {
-  .buttons { flex-direction: column; }
-  .product-card { flex: 1 1 100%; }
-}
+.product-card img { max-width:100%; border-radius:5px; }
+footer { text-align:center; padding:15px; background:rgba(0,0,0,0.7); margin-top:20px; }
+@media(max-width:600px){ .buttons { flex-direction:column; } .product-card { flex:1 1 100%; } }
 
 /* Modal */
-.modal { display: none; position: fixed; top:0; left:0; width:100%; height:100%;
-  background: rgba(0,0,0,0.8); justify-content:center; align-items:center; padding:20px; z-index:1000;
-}
+.modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); justify-content:center; align-items:center; padding:20px; z-index:1000; }
 .modal-content { background:#fff; color:#333; padding:20px; border-radius:10px; max-width:500px; width:100%; position:relative; }
 .modal-content img { max-width:100%; border-radius:5px; margin-bottom:15px; }
 .close { position:absolute; top:10px; right:10px; font-size:25px; font-weight:bold; color:#ff4c4c; cursor:pointer; }
 .close:hover { color:#000; }
 
 /* Slideshow */
-.slideshow-container { position: relative; margin-bottom: 20px; }
-.slides { display: none; width: 100%; border-radius: 10px; }
-.prev, .next {
-  cursor: pointer; position: absolute; top: 50%; width: auto; padding: 16px;
-  margin-top: -22px; color: #fff; font-weight: bold; font-size: 18px;
-  border-radius: 0 3px 3px 0; user-select: none; background: rgba(0,0,0,0.3);
-}
-.next { right: 0; border-radius: 3px 0 0 3px; }
+.slideshow-container { position:relative; margin-bottom:20px; }
+.slides { display:none; width:100%; border-radius:10px; }
+.prev, .next { cursor:pointer; position:absolute; top:50%; width:auto; padding:16px; margin-top:-22px; color:#fff; font-weight:bold; font-size:18px; border-radius:0 3px 3px 0; user-select:none; background:rgba(0,0,0,0.3);}
+.next { right:0; border-radius:3px 0 0 3px; }
 .prev:hover, .next:hover { background-color: rgba(0,0,0,0.6); }
 
-.search-bar { margin: 20px 0; text-align: center; }
-.search-bar input { padding: 10px; width: 70%; border-radius: 5px; border: none; }
+.search-bar { margin:20px 0; text-align:center; }
+.search-bar input { padding:10px; width:70%; border-radius:5px; border:none; }
 </style>
 </head>
 <body>
 
 <header>
-  <h1>DUPONT ACCESSORIES</h1>
-  <p>Advertising Phones, Electronics, and Cars</p>
+<h1>DUPONT ACCESSORIES</h1>
+<p>Advertising Phones, Electronics, and Cars</p>
 </header>
 
 <div class="container">
 
-  <!-- Slideshow -->
-  <div class="slideshow-container">
-    <img class="slides" src="slide1.jpg" alt="Slide 1">
-    <img class="slides" src="slide2.jpg" alt="Slide 2">
-    <img class="slides" src="slide3.jpg" alt="Slide 3">
-    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+<!-- Slideshow -->
+<div class="slideshow-container">
+<img class="slides" src="slide1.jpg" alt="Slide 1">
+<img class="slides" src="slide2.jpg" alt="Slide 2">
+<img class="slides" src="slide3.jpg" alt="Slide 3">
+<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+<a class="next" onclick="plusSlides(1)">&#10095;</a>
+</div>
+
+<!-- Search Bar -->
+<div class="search-bar">
+<input type="text" id="searchInput" placeholder="Search products..." onkeyup="searchProducts()">
+</div>
+
+<section class="buttons">
+<button onclick="scrollToSection('phones')">Phones</button>
+<button onclick="scrollToSection('electronics')">Electronics</button>
+<button onclick="scrollToSection('cars')">Cars</button>
+</section>
+
+<!-- Phones -->
+<section id="phones">
+<h2>Phones</h2>
+<div class="products" id="phonesProducts">
+  <div class="product-card" onclick="showDetails('iPhone 13 Pro','iphone.jpg','Apple','13 Pro','128GB','6.1\"','3095 mAh','A15 Bionic','6GB','12MP','Gold','$499')">
+    <img src="iphone.jpg" alt="iPhone 13 Pro">
+    <h3>iPhone 13 Pro</h3>
+    <p>Price: $499</p>
   </div>
-
-  <!-- Search Bar -->
-  <div class="search-bar">
-    <input type="text" id="searchInput" placeholder="Search products..." onkeyup="searchProducts()">
+  <div class="product-card" onclick="showDetails('Samsung Galaxy S22','samsung.jpg','Samsung','Galaxy S22','128GB','6.2\"','3700 mAh','Exynos 2100','8GB','64MP','Phantom Black','$350')">
+    <img src="samsung.jpg" alt="Samsung Galaxy S22">
+    <h3>Samsung Galaxy S22</h3>
+    <p>Price: $350</p>
   </div>
+</div>
+</section>
 
-  <section class="buttons">
-    <button onclick="scrollToSection('phones')">Phones</button>
-    <button onclick="scrollToSection('electronics')">Electronics</button>
-    <button onclick="scrollToSection('cars')">Cars</button>
-  </section>
+<!-- Electronics -->
+<section id="electronics">
+<h2>Electronics</h2>
+<div class="products" id="electronicsProducts">
+  <div class="product-card" onclick="showDetails('Dell XPS 13','dell.jpg','Dell','XPS 13','512GB SSD','13.3\"','N/A','Intel i7','16GB','Intel Iris Xe','Silver','$800')">
+    <img src="dell.jpg" alt="Dell XPS 13">
+    <h3>Dell XPS 13</h3>
+    <p>Price: $800</p>
+  </div>
+  <div class="product-card" onclick="showDetails('Samsung Smart TV','tv.jpg','Samsung','Smart TV','1TB','55\"','N/A','Tizen OS','8GB','4K UHD','Black','$1500')">
+    <img src="tv.jpg" alt="Samsung Smart TV">
+    <h3>Samsung Smart TV</h3>
+    <p>Price: $1500</p>
+  </div>
+</div>
+</section>
 
-  <!-- Phones -->
-  <section id="phones">
-    <h2>Phones</h2>
-    <div class="products" id="phonesProducts">
-      <div class="product-card" onclick="showDetails('iPhone 13 Pro','iphone.jpg','Apple','13 Pro','128GB','6.1\"','A15 Bionic','6GB','12MP','Gold','$499')">
-        <img src="iphone.jpg" alt="iPhone 13 Pro">
-        <h3>iPhone 13 Pro</h3>
-        <p>Price: $499</p>
-      </div>
-      <div class="product-card" onclick="showDetails('Samsung Galaxy S22','samsung.jpg','Samsung','Galaxy S22','128GB','6.2\"','Exynos 2100','8GB','64MP','Phantom Black','$350')">
-        <img src="samsung.jpg" alt="Samsung Galaxy S22">
-        <h3>Samsung Galaxy S22</h3>
-        <p>Price: $350</p>
-      </div>
-    </div>
-  </section>
+<!-- Cars -->
+<section id="cars">
+<h2>Cars</h2>
+<div class="products" id="carsProducts">
+  <div class="product-card" onclick="showDetails('Toyota Corolla 2018','corolla.jpg','Toyota','Automatic','1.8L Engine','N/A','Petrol','N/A','5 Seats','36 MPG','White','$12,000')">
+    <img src="corolla.jpg" alt="Toyota Corolla 2018">
+    <h3>Toyota Corolla 2018</h3>
+    <p>Price: $12,000</p>
+  </div>
+  <div class="product-card" onclick="showDetails('Honda Civic 2020','civic.jpg','Honda','CVT','2.0L Engine','N/A','Petrol','N/A','5 Seats','32 MPG','Red','$15,000')">
+    <img src="civic.jpg" alt="Honda Civic 2020">
+    <h3>Honda Civic 2020</h3>
+    <p>Price: $15,000</p>
+  </div>
+</div>
+</section>
 
-  <!-- Electronics -->
-  <section id="electronics">
-    <h2>Electronics</h2>
-    <div class="products" id="electronicsProducts">
-      <div class="product-card" onclick="showDetails('Dell XPS 13','dell.jpg','Dell','XPS 13','512GB SSD','13.3\"','Intel i7','16GB','Intel Iris Xe','Silver','$800')">
-        <img src="dell.jpg" alt="Dell XPS 13">
-        <h3>Dell XPS 13</h3>
-        <p>Price: $800</p>
-      </div>
-      <div class="product-card" onclick="showDetails('Samsung Smart TV','tv.jpg','Samsung','Smart TV','1TB','55\"','Tizen OS','8GB','4K UHD','Black','$1500')">
-        <img src="tv.jpg" alt="Samsung Smart TV">
-        <h3>Samsung Smart TV</h3>
-        <p>Price: $1500</p>
-      </div>
-    </div>
-  </section>
+<section>
+<h2>Contact</h2>
+<p>Email: <a href="mailto:dupont22@gmail.com">dupont22@gmail.com</a></p>
+<p>Phone: <a href="tel:+254741398595">0741 398 595</a></p>
+</section>
 
-  <!-- Cars -->
-  <section id="cars">
-    <h2>Cars</h2>
-    <div class="products" id="carsProducts">
-      <div class="product-card" onclick="showDetails('Toyota Corolla 2018','corolla.jpg','Toyota','Automatic','1.8L Engine','Petrol','5 Seats','36 MPG','White','$12,000')">
-        <img src="corolla.jpg" alt="Toyota Corolla 2018">
-        <h3>Toyota Corolla 2018</h3>
-        <p>Price: $12,000</p>
-      </div>
-      <div class="product-card" onclick="showDetails('Honda Civic 2020','civic.jpg','Honda','CVT','2.0L Engine','Petrol','5 Seats','32 MPG','Red','$15,000')">
-        <img src="civic.jpg" alt="Honda Civic 2020">
-        <h3>Honda Civic 2020</h3>
-        <p>Price: $15,000</p>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <h2>Contact</h2>
-    <p>Email: <a href="mailto:dupont22@gmail.com">dupont22@gmail.com</a></p>
-    <p>Phone: <a href="tel:+254741398595">0741 398 595</a></p>
-  </section>
 </div>
 
 <footer>&copy; 2025 Dupont Accessories. All rights reserved.</footer>
 
 <!-- Modal -->
 <div id="productModal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal()">&times;</span>
-    <img id="modalImage" src="" alt="">
-    <h2 id="modalName"></h2>
-    <p id="modalBrand"></p>
-    <p id="modalModel"></p>
-    <p id="modalStorage"></p>
-    <p id="modalScreen"></p>
-    <p id="modalBattery"></p>
-    <p id="modalCamera"></p>
-    <p id="modalProcessor"></p>
-    <p id="modalRam"></p>
-    <p id="modalColors"></p>
-    <p id="modalPrice"></p>
-  </div>
+<div class="modal-content">
+<span class="close" onclick="closeModal()">&times;</span>
+<img id="modalImage" src="" alt="">
+<h2 id="modalName"></h2>
+<p id="modalBrand"></p>
+<p id="modalModel"></p>
+<p id="modalStorage"></p>
+<p id="modalScreen"></p>
+<p id="modalBattery"></p>
+<p id="modalCamera"></p>
+<p id="modalProcessor"></p>
+<p id="modalRam"></p>
+<p id="modalColors"></p>
+<p id="modalPrice"></p>
+</div>
 </div>
 
 <script>
-let slideIndex = 0;
+let slideIndex=0;
 showSlides();
-
-function showSlides() {
-  let slides = document.getElementsByClassName("slides");
+function showSlides(){
+  let slides=document.getElementsByClassName("slides");
   for(let i=0;i<slides.length;i++){ slides[i].style.display="none"; }
   slideIndex++;
   if(slideIndex>slides.length){ slideIndex=1; }
   slides[slideIndex-1].style.display="block";
-  setTimeout(showSlides, 3000);
+  setTimeout(showSlides,3000);
 }
-
-function plusSlides(n) { slideIndex += n-1; showSlides(); }
-function scrollToSection(id) { document.getElementById(id).scrollIntoView({ behavior: "smooth" }); }
+function plusSlides(n){ slideIndex+=n-1; showSlides(); }
+function scrollToSection(id){ document.getElementById(id).scrollIntoView({behavior:"smooth"}); }
 
 function showDetails(name,img,brand,model,storage,screen,battery,processor,ram,camera,colors,price){
-  document.getElementById("modalImage").src=img;
-  document.getElementById("modalName").innerText=name;
-  document.getElementById("modalBrand").innerText="Brand: "+brand;
-  document.getElementById("modalModel").innerText="Model: "+model;
-  document.getElementById("modalStorage").innerText="Storage: "+storage;
-  document.getElementById("modalScreen").innerText="Screen: "+screen;
-  document.getElementById("modalBattery").innerText="Battery: "+battery;
-  document.getElementById("modalCamera").innerText="Camera: "+camera;
-  document.getElementById("modalProcessor").innerText="Processor: "+processor;
-  document.getElementById("modalRam").innerText="RAM: "+ram;
-  document.getElementById("modalColors").innerText="Colors: "+colors;
-  document.getElementById("modalPrice").innerText="Price: "+price;
-  document.getElementById("productModal").style.display="flex";
+document.getElementById("modalImage").src=img;
+document.getElementById("modalName").innerText=name;
+document.getElementById("modalBrand").innerText="Brand: "+brand;
+document.getElementById("modalModel").innerText="Model: "+model;
+document.getElementById("modalStorage").innerText="Storage: "+storage;
+document.getElementById("modalScreen").innerText="Screen: "+screen;
+document.getElementById("modalBattery").innerText="Battery: "+battery;
+document.getElementById("modalCamera").innerText="Camera: "+camera;
+document.getElementById("modalProcessor").innerText="Processor: "+processor;
+document.getElementById("modalRam").innerText="RAM: "+ram;
+document.getElementById("modalColors").innerText="Colors: "+colors;
+document.getElementById("modalPrice").innerText="Price: "+price;
+document.getElementById("productModal").style.display="flex";
 }
 
-function closeModal() { document.getElementById("productModal").style.display="none"; }
+function closeModal(){ document.getElementById("productModal").style.display="none"; }
 
-function searchProducts() {
-  let input = document.getElementById("searchInput").value.toLowerCase();
-  let cards = document.querySelectorAll(".product-card");
-  cards.forEach(card=>{
-    let name = card.querySelector("h3").innerText.toLowerCase();
-    if(name.includes(input)){ card.style.display="block"; } else { card.style.display="none"; }
-  });
+function searchProducts(){
+let input=document.getElementById("searchInput").value.toLowerCase();
+let cards=document.querySelectorAll(".product-card");
+cards.forEach(card=>{
+let name=card.querySelector("h3").innerText.toLowerCase();
+if(name.includes(input)){ card.style.display="block"; } else { card.style.display="none"; }
+});
 }
 </script>
 
 </body>
 </html>
-
-
-
 
 
 
