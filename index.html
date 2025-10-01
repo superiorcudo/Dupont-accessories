@@ -6,7 +6,6 @@
   <title>Duponts' Online Store</title>
   <link rel="icon" href="favicon.png" type="image/png">
   <style>
-    /* Background Gradient */
     body {
       font-family: Arial, sans-serif;
       margin: 0;
@@ -23,7 +22,7 @@
 
     .container {
       padding: 20px;
-      max-width: 1000px;
+      max-width: 1200px;
       margin: auto;
       color: #fff;
     }
@@ -33,16 +32,31 @@
       padding-bottom: 5px;
     }
 
+    /* Search bar */
+    .search-container {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .search-container input {
+      padding: 10px;
+      width: 80%;
+      max-width: 400px;
+      border-radius: 5px;
+      border: none;
+      font-size: 16px;
+    }
+
     .buttons {
       margin: 20px 0;
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
+      justify-content: center;
     }
 
-    /* Lime Green Buttons */
     .buttons button {
-      background-color: #a4de02; /* lime green */
+      background-color: #a4de02;
       color: #fff;
       border-radius: 5px;
       border: none;
@@ -52,13 +66,14 @@
     }
 
     .buttons button:hover {
-      background-color: #76b900; /* darker lime green */
+      background-color: #76b900;
     }
 
     .products {
       display: flex;
       flex-wrap: wrap;
       gap: 20px;
+      justify-content: center;
     }
 
     .product-card {
@@ -66,6 +81,7 @@
       padding: 10px;
       border-radius: 8px;
       flex: 1 1 250px;
+      max-width: 300px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.2);
       text-align: center;
       cursor: pointer;
@@ -134,7 +150,7 @@
       right: 10px;
       font-size: 25px;
       font-weight: bold;
-      color: #ff4c4c; /* red */
+      color: #ff4c4c;
       background: rgba(255,255,255,0.3);
       border-radius: 50%;
       padding: 5px 10px;
@@ -146,8 +162,60 @@
       background: rgba(255,255,255,0.6);
     }
 
-    .modal-content p {
-      margin: 5px 0;
+    /* Slideshow */
+    .slideshow-container {
+      position: relative;
+      margin: auto;
+      max-width: 1000px;
+    }
+
+    .mySlides {
+      display: none;
+    }
+
+    .fade {
+      animation: fade 1.5s;
+    }
+
+    @keyframes fade {
+      from {opacity: .4}
+      to {opacity: 1}
+    }
+
+    .prev, .next {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      padding: 16px;
+      margin-top: -22px;
+      color: white;
+      font-weight: bold;
+      font-size: 20px;
+      transition: 0.3s;
+      user-select: none;
+    }
+
+    .next {
+      right: 0;
+    }
+
+    .prev:hover, .next:hover {
+      background-color: rgba(0,0,0,0.8);
+    }
+
+    .dot {
+      cursor: pointer;
+      height: 15px;
+      width: 15px;
+      margin: 0 2px;
+      background-color: #bbb;
+      border-radius: 50%;
+      display: inline-block;
+      transition: background-color 0.6s ease;
+    }
+
+    .active, .dot:hover {
+      background-color: #717171;
     }
   </style>
 </head>
@@ -158,11 +226,37 @@
   <p>Advertising Phones, Electronics, and Cars</p>
 </header>
 
+<!-- Slideshow -->
+<div class="slideshow-container">
+  <div class="mySlides fade">
+    <img src="https://via.placeholder.com/1000x400?text=Slide+1" style="width:100%">
+  </div>
+  <div class="mySlides fade">
+    <img src="https://via.placeholder.com/1000x400?text=Slide+2" style="width:100%">
+  </div>
+  <div class="mySlides fade">
+    <img src="https://via.placeholder.com/1000x400?text=Slide+3" style="width:100%">
+  </div>
+  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+  <a class="next" onclick="plusSlides(1)">&#10095;</a>
+</div>
+<br>
+<div style="text-align:center">
+  <span class="dot" onclick="currentSlide(1)"></span> 
+  <span class="dot" onclick="currentSlide(2)"></span> 
+  <span class="dot" onclick="currentSlide(3)"></span> 
+</div>
+
 <div class="container">
   <section>
-    <h2>My Online store</h2>
+    <h2>My Online Store</h2>
     <p>Welcome! I'm a seller of high-quality phones, electronics, and cars. Browse below to view some of my products.</p>
   </section>
+
+  <!-- Search Bar -->
+  <div class="search-container">
+    <input type="text" id="searchBar" onkeyup="searchProducts()" placeholder="Search for products...">
+  </div>
 
   <section class="buttons">
     <button onclick="scrollToSection('phones')">Phones</button>
@@ -170,6 +264,7 @@
     <button onclick="scrollToSection('cars')">Cars</button>
   </section>
 
+  <!-- Phones -->
   <section id="phones">
     <h2>Phones</h2>
     <div class="products">
@@ -186,6 +281,7 @@
     </div>
   </section>
 
+  <!-- Electronics -->
   <section id="electronics">
     <h2>Electronics</h2>
     <div class="products">
@@ -202,6 +298,7 @@
     </div>
   </section>
 
+  <!-- Cars -->
   <section id="cars">
     <h2>Cars</h2>
     <div class="products">
@@ -235,95 +332,102 @@
     <span class="close" onclick="closeModal()">&times;</span>
     <img id="modalImage" src="" alt="">
     <h2 id="modalName"></h2>
-    <p id="modalBrand"></p>
-    <p id="modalModel"></p>
-    <p id="modalStorage"></p>
-    <p id="modalScreen"></p>
-    <p id="modalBattery"></p>
-    <p id="modalCamera"></p>
-    <p id="modalProcessor"></p>
-    <p id="modalRam"></p>
-    <p id="modalColors"></p>
     <p id="modalPrice"></p>
   </div>
 </div>
 
 <script>
+  // Smooth scroll
   function scrollToSection(id) {
     document.getElementById(id).scrollIntoView({ behavior: "smooth" });
   }
 
-  // Product database
-  const products = [
-    { 
-      name: "iPhone 13 Pro", brand: "Apple", model: "13 Pro", image: "iphone.jpg", 
-      price: "$499", storage: "128GB", screen: "6.1 inch", battery: "3095mAh", 
-      camera: "12MP Triple Camera", processor: "A15 Bionic", ram: "6GB", colors: "Silver, Graphite, Gold" 
-    },
-    { 
-      name: "Samsung Galaxy S22", brand: "Samsung", model: "S22", image: "samsung.jpg", 
-      price: "$350", storage: "128GB", screen: "6.1 inch", battery: "3700mAh", 
-      camera: "50MP Triple Camera", processor: "Snapdragon 8 Gen 1", ram: "8GB", colors: "Phantom Black, White" 
-    },
-    { 
-      name: "Dell XPS 13", brand: "Dell", model: "XPS 13", image: "dell.jpg", 
-      price: "$800", storage: "512GB SSD", screen: "13.4 inch FHD+", battery: "52Wh", 
-      camera: "720p HD", processor: "Intel i7 11th Gen", ram: "16GB", colors: "Silver" 
-    },
-    { 
-      name: "Samsung Smart TV", brand: "Samsung", model: "QLED 55\"", image: "tv.jpg", 
-      price: "$1500", storage: "N/A", screen: "55 inch QLED 4K", battery: "N/A", 
-      camera: "N/A", processor: "Quantum Processor 4K", ram: "N/A", colors: "Black" 
-    },
-    { 
-      name: "Toyota Corolla 2018", brand: "Toyota", model: "Corolla", image: "corolla.jpg", 
-      price: "$12,000", storage: "N/A", screen: "N/A", battery: "N/A", 
-      camera: "N/A", processor: "1.8L 4-Cylinder", ram: "N/A", colors: "White, Black" 
-    },
-    { 
-      name: "Honda Civic 2020", brand: "Honda", model: "Civic", image: "civic.jpg", 
-      price: "$15,000", storage: "N/A", screen: "N/A", battery: "N/A", 
-      camera: "N/A", processor: "2.0L 4-Cylinder", ram: "N/A", colors: "Blue, Gray" 
+  // Product search
+  function searchProducts() {
+    let input = document.getElementById('searchBar').value.toLowerCase();
+    let products = document.getElementsByClassName('product-card');
+    for (let i = 0; i < products.length; i++) {
+      let name = products[i].getElementsByTagName('h3')[0].innerText.toLowerCase();
+      products[i].style.display = name.includes(input) ? "" : "none";
     }
-  ];
+  }
 
-  // Show product details in modal
+  // Modal functionality
   function showDetails(productName) {
-    const product = products.find(p => p.name === productName);
-    if (!product) return;
+    let modal = document.getElementById('productModal');
+    let modalName = document.getElementById('modalName');
+    let modalPrice = document.getElementById('modalPrice');
+    let modalImage = document.getElementById('modalImage');
 
-    document.getElementById("modalImage").src = product.image;
-    document.getElementById("modalName").innerText = product.name;
-    document.getElementById("modalBrand").innerText = "Brand: " + product.brand;
-    document.getElementById("modalModel").innerText = "Model: " + product.model;
-    document.getElementById("modalStorage").innerText = "Storage: " + product.storage;
-    document.getElementById("modalScreen").innerText = "Screen: " + product.screen;
-    document.getElementById("modalBattery").innerText = "Battery: " + product.battery;
-    document.getElementById("modalCamera").innerText = "Camera: " + product.camera;
-    document.getElementById("modalProcessor").innerText = "Processor: " + product.processor;
-    document.getElementById("modalRam").innerText = "RAM: " + product.ram;
-    document.getElementById("modalColors").innerText = "Colors: " + product.colors;
-    document.getElementById("modalPrice").innerText = "Price: " + product.price;
-
-    document.getElementById("productModal").style.display = "flex";
-  }
-
-  // Close modal
-  function closeModal() {
-    document.getElementById("productModal").style.display = "none";
-  }
-
-  // Close modal when clicking outside content
-  window.onclick = function(event) {
-    const modal = document.getElementById("productModal");
-    if (event.target === modal) {
-      closeModal();
+    if (productName === "iPhone 13 Pro") {
+      modalName.innerText = "iPhone 13 Pro";
+      modalPrice.innerText = "Price: $499";
+      modalImage.src = "iphone.jpg";
+    } else if (productName === "Samsung Galaxy S22") {
+      modalName.innerText = "Samsung Galaxy S22";
+      modalPrice.innerText = "Price: $350";
+      modalImage.src = "samsung.jpg";
+    } else if (productName === "Dell XPS 13") {
+      modalName.innerText = "Dell XPS 13";
+      modalPrice.innerText = "Price: $800";
+      modalImage.src = "dell.jpg";
+    } else if (productName === "Samsung Smart TV") {
+      modalName.innerText = "Samsung Smart TV";
+      modalPrice.innerText = "Price: $1500";
+      modalImage.src = "tv.jpg";
+    } else if (productName === "Toyota Corolla 2018") {
+      modalName.innerText = "Toyota Corolla 2018";
+      modalPrice.innerText = "Price: $12,000";
+      modalImage.src = "corolla.jpg";
+    } else if (productName === "Honda Civic 2020") {
+      modalName.innerText = "Honda Civic 2020";
+      modalPrice.innerText = "Price: $15,000";
+      modalImage.src = "civic.jpg";
     }
+
+    modal.style.display = "flex";
+  }
+
+  function closeModal() {
+    document.getElementById('productModal').style.display = "none";
+  }
+
+  // Slideshow functionality
+  let slideIndex = 0;
+  showSlides();
+
+  function showSlides() {
+    let i;
+    let slides = document.getElementsByClassName("mySlides");
+    let dots = document.getElementsByClassName("dot");
+    for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";  
+    }
+    slideIndex++;
+    if (slideIndex > slides.length) {slideIndex = 1}    
+    for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+    }
+    slides[slideIndex-1].style.display = "block";  
+    dots[slideIndex-1].className += " active";
+    setTimeout(showSlides, 4000); // Auto-change every 4s
+  }
+
+  function plusSlides(n) {
+    slideIndex += n-1;
+    showSlides();
+  }
+
+  function currentSlide(n) {
+    slideIndex = n-1;
+    showSlides();
   }
 </script>
 
 </body>
 </html>
+
+
 
 
 
