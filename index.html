@@ -182,17 +182,11 @@ function showSlides() {
   slideIndex++;
   if(slideIndex>slides.length){ slideIndex=1; }
   slides[slideIndex-1].style.display="block";
-  setTimeout(showSlides, 3000); // Change image every 3 seconds
+  setTimeout(showSlides, 3000);
 }
 
-function plusSlides(n) {
-  slideIndex += n -1;
-  showSlides();
-}
-
-function scrollToSection(id) {
-  document.getElementById(id).scrollIntoView({ behavior: "smooth" });
-}
+function plusSlides(n) { slideIndex += n-1; showSlides(); }
+function scrollToSection(id) { document.getElementById(id).scrollIntoView({ behavior: "smooth" }); }
 
 function showDetails(name,img,brand,model,storage,screen,battery,processor,ram,camera,colors,price){
   document.getElementById("modalImage").src=img;
