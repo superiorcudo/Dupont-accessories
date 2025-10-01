@@ -1,223 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Duponts' Online Store</title>
-  <link rel="icon" href="favicon.png" type="image/png">
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(to bottom right, #4a90e2, #8e44ad);
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Duponts' Online Store</title>
+<link rel="icon" href="favicon.png" type="image/png">
+<style>
+body {
+  font-family: Arial, sans-serif;
+  margin: 0; padding: 0;
+  background: linear-gradient(to bottom right, #4a90e2, #8e44ad);
+  color: #fff;
+}
+header {
+  text-align: center;
+  padding: 20px;
+  background: rgba(0,0,0,0.5);
+}
+header h1 { margin: 0; }
+.container { max-width: 1000px; margin: auto; padding: 20px; }
+.buttons { display: flex; gap: 10px; flex-wrap: wrap; margin: 20px 0; }
+.buttons button {
+  background: #a4de02; color: #fff; border: none; padding: 10px 15px;
+  border-radius: 5px; cursor: pointer; transition: 0.3s;
+}
+.buttons button:hover { background: #76b900; }
+.products { display: flex; flex-wrap: wrap; gap: 20px; }
+.product-card {
+  background: rgba(255,255,255,0.1); padding: 10px; border-radius: 8px;
+  flex: 1 1 250px; text-align: center; cursor: pointer;
+  transition: transform 0.2s;
+}
+.product-card:hover { transform: scale(1.03); }
+.product-card img { max-width: 100%; border-radius: 5px; }
+footer { text-align: center; padding: 15px; background: rgba(0,0,0,0.7); margin-top:20px; }
 
-    header {
-      background-color: rgba(0,0,0,0.5);
-      color: white;
-      padding: 20px 0;
-      text-align: center;
-    }
+@media(max-width:600px) {
+  .buttons { flex-direction: column; }
+  .product-card { flex: 1 1 100%; }
+}
 
-    .container {
-      padding: 20px;
-      max-width: 1200px;
-      margin: auto;
-      color: #fff;
-    }
+/* Modal */
+.modal { display: none; position: fixed; top:0; left:0; width:100%; height:100%;
+  background: rgba(0,0,0,0.8); justify-content:center; align-items:center; padding:20px; z-index:1000;
+}
+.modal-content { background:#fff; color:#333; padding:20px; border-radius:10px; max-width:500px; width:100%; position:relative; }
+.modal-content img { max-width:100%; border-radius:5px; margin-bottom:15px; }
+.close { position:absolute; top:10px; right:10px; font-size:25px; font-weight:bold; color:#ff4c4c; cursor:pointer; }
+.close:hover { color:#000; }
 
-    h2 {
-      border-bottom: 2px solid #fff;
-      padding-bottom: 5px;
-    }
+/* Slideshow */
+.slideshow-container { position: relative; margin-bottom: 20px; }
+.slides { display: none; width: 100%; border-radius: 10px; }
+.prev, .next {
+  cursor: pointer; position: absolute; top: 50%; width: auto; padding: 16px;
+  margin-top: -22px; color: #fff; font-weight: bold; font-size: 18px;
+  border-radius: 0 3px 3px 0; user-select: none; background: rgba(0,0,0,0.3);
+}
+.next { right: 0; border-radius: 3px 0 0 3px; }
+.prev:hover, .next:hover { background-color: rgba(0,0,0,0.6); }
 
-    /* Search bar */
-    .search-container {
-      text-align: center;
-      margin: 20px 0;
-    }
-
-    .search-container input {
-      padding: 10px;
-      width: 80%;
-      max-width: 400px;
-      border-radius: 5px;
-      border: none;
-      font-size: 16px;
-    }
-
-    .buttons {
-      margin: 20px 0;
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .buttons button {
-      background-color: #a4de02;
-      color: #fff;
-      border-radius: 5px;
-      border: none;
-      padding: 10px 15px;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    .buttons button:hover {
-      background-color: #76b900;
-    }
-
-    .products {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
-    }
-
-    .product-card {
-      background: rgba(255,255,255,0.1);
-      padding: 10px;
-      border-radius: 8px;
-      flex: 1 1 250px;
-      max-width: 300px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-      text-align: center;
-      cursor: pointer;
-      transition: transform 0.2s;
-    }
-
-    .product-card:hover {
-      transform: scale(1.03);
-    }
-
-    .product-card img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 5px;
-    }
-
-    footer {
-      text-align: center;
-      padding: 15px;
-      background-color: rgba(0,0,0,0.7);
-      color: #fff;
-      margin-top: 20px;
-    }
-
-    @media (max-width: 600px) {
-      .buttons {
-        flex-direction: column;
-      }
-      .product-card {
-        flex: 1 1 100%;
-      }
-    }
-
-    /* Modal */
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background-color: rgba(0,0,0,0.8);
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-      z-index: 1000;
-    }
-
-    .modal-content {
-      background-color: #fff;
-      color: #333;
-      padding: 20px;
-      border-radius: 10px;
-      max-width: 500px;
-      width: 100%;
-      position: relative;
-    }
-
-    .modal-content img {
-      max-width: 100%;
-      border-radius: 5px;
-      margin-bottom: 15px;
-    }
-
-    .close {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      font-size: 25px;
-      font-weight: bold;
-      color: #ff4c4c;
-      background: rgba(255,255,255,0.3);
-      border-radius: 50%;
-      padding: 5px 10px;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    .close:hover {
-      background: rgba(255,255,255,0.6);
-    }
-
-    /* Slideshow */
-    .slideshow-container {
-      position: relative;
-      margin: auto;
-      max-width: 1000px;
-    }
-
-    .mySlides {
-      display: none;
-    }
-
-    .fade {
-      animation: fade 1.5s;
-    }
-
-    @keyframes fade {
-      from {opacity: .4}
-      to {opacity: 1}
-    }
-
-    .prev, .next {
-      cursor: pointer;
-      position: absolute;
-      top: 50%;
-      padding: 16px;
-      margin-top: -22px;
-      color: white;
-      font-weight: bold;
-      font-size: 20px;
-      transition: 0.3s;
-      user-select: none;
-    }
-
-    .next {
-      right: 0;
-    }
-
-    .prev:hover, .next:hover {
-      background-color: rgba(0,0,0,0.8);
-    }
-
-    .dot {
-      cursor: pointer;
-      height: 15px;
-      width: 15px;
-      margin: 0 2px;
-      background-color: #bbb;
-      border-radius: 50%;
-      display: inline-block;
-      transition: background-color 0.6s ease;
-    }
-
-    .active, .dot:hover {
-      background-color: #717171;
-    }
-  </style>
+.search-bar { margin: 20px 0; text-align: center; }
+.search-bar input { padding: 10px; width: 70%; border-radius: 5px; border: none; }
+</style>
 </head>
 <body>
 
@@ -226,36 +71,20 @@
   <p>Advertising Phones, Electronics, and Cars</p>
 </header>
 
-<!-- Slideshow -->
-<div class="slideshow-container">
-  <div class="mySlides fade">
-    <img src="https://via.placeholder.com/1000x400?text=Slide+1" style="width:100%">
-  </div>
-  <div class="mySlides fade">
-    <img src="https://via.placeholder.com/1000x400?text=Slide+2" style="width:100%">
-  </div>
-  <div class="mySlides fade">
-    <img src="https://via.placeholder.com/1000x400?text=Slide+3" style="width:100%">
-  </div>
-  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-  <a class="next" onclick="plusSlides(1)">&#10095;</a>
-</div>
-<br>
-<div style="text-align:center">
-  <span class="dot" onclick="currentSlide(1)"></span> 
-  <span class="dot" onclick="currentSlide(2)"></span> 
-  <span class="dot" onclick="currentSlide(3)"></span> 
-</div>
-
 <div class="container">
-  <section>
-    <h2>My Online Store</h2>
-    <p>Welcome! I'm a seller of high-quality phones, electronics, and cars. Browse below to view some of my products.</p>
-  </section>
+
+  <!-- Slideshow -->
+  <div class="slideshow-container">
+    <img class="slides" src="slide1.jpg" alt="Slide 1">
+    <img class="slides" src="slide2.jpg" alt="Slide 2">
+    <img class="slides" src="slide3.jpg" alt="Slide 3">
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+  </div>
 
   <!-- Search Bar -->
-  <div class="search-container">
-    <input type="text" id="searchBar" onkeyup="searchProducts()" placeholder="Search for products...">
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Search products..." onkeyup="searchProducts()">
   </div>
 
   <section class="buttons">
@@ -267,13 +96,13 @@
   <!-- Phones -->
   <section id="phones">
     <h2>Phones</h2>
-    <div class="products">
-      <div class="product-card" onclick="showDetails('iPhone 13 Pro')">
+    <div class="products" id="phonesProducts">
+      <div class="product-card" onclick="showDetails('iPhone 13 Pro','iphone.jpg','Apple','13 Pro','128GB','6.1\"','A15 Bionic','6GB','12MP','Gold','$499')">
         <img src="iphone.jpg" alt="iPhone 13 Pro">
         <h3>iPhone 13 Pro</h3>
         <p>Price: $499</p>
       </div>
-      <div class="product-card" onclick="showDetails('Samsung Galaxy S22')">
+      <div class="product-card" onclick="showDetails('Samsung Galaxy S22','samsung.jpg','Samsung','Galaxy S22','128GB','6.2\"','Exynos 2100','8GB','64MP','Phantom Black','$350')">
         <img src="samsung.jpg" alt="Samsung Galaxy S22">
         <h3>Samsung Galaxy S22</h3>
         <p>Price: $350</p>
@@ -284,13 +113,13 @@
   <!-- Electronics -->
   <section id="electronics">
     <h2>Electronics</h2>
-    <div class="products">
-      <div class="product-card" onclick="showDetails('Dell XPS 13')">
+    <div class="products" id="electronicsProducts">
+      <div class="product-card" onclick="showDetails('Dell XPS 13','dell.jpg','Dell','XPS 13','512GB SSD','13.3\"','Intel i7','16GB','Intel Iris Xe','Silver','$800')">
         <img src="dell.jpg" alt="Dell XPS 13">
         <h3>Dell XPS 13</h3>
         <p>Price: $800</p>
       </div>
-      <div class="product-card" onclick="showDetails('Samsung Smart TV')">
+      <div class="product-card" onclick="showDetails('Samsung Smart TV','tv.jpg','Samsung','Smart TV','1TB','55\"','Tizen OS','8GB','4K UHD','Black','$1500')">
         <img src="tv.jpg" alt="Samsung Smart TV">
         <h3>Samsung Smart TV</h3>
         <p>Price: $1500</p>
@@ -301,13 +130,13 @@
   <!-- Cars -->
   <section id="cars">
     <h2>Cars</h2>
-    <div class="products">
-      <div class="product-card" onclick="showDetails('Toyota Corolla 2018')">
+    <div class="products" id="carsProducts">
+      <div class="product-card" onclick="showDetails('Toyota Corolla 2018','corolla.jpg','Toyota','Automatic','1.8L Engine','Petrol','5 Seats','36 MPG','White','$12,000')">
         <img src="corolla.jpg" alt="Toyota Corolla 2018">
         <h3>Toyota Corolla 2018</h3>
         <p>Price: $12,000</p>
       </div>
-      <div class="product-card" onclick="showDetails('Honda Civic 2020')">
+      <div class="product-card" onclick="showDetails('Honda Civic 2020','civic.jpg','Honda','CVT','2.0L Engine','Petrol','5 Seats','32 MPG','Red','$15,000')">
         <img src="civic.jpg" alt="Honda Civic 2020">
         <h3>Honda Civic 2020</h3>
         <p>Price: $15,000</p>
@@ -322,9 +151,7 @@
   </section>
 </div>
 
-<footer>
-  &copy; 2025 Dupont Accessories. All rights reserved.
-</footer>
+<footer>&copy; 2025 Dupont Accessories. All rights reserved.</footer>
 
 <!-- Modal -->
 <div id="productModal" class="modal">
@@ -332,100 +159,72 @@
     <span class="close" onclick="closeModal()">&times;</span>
     <img id="modalImage" src="" alt="">
     <h2 id="modalName"></h2>
+    <p id="modalBrand"></p>
+    <p id="modalModel"></p>
+    <p id="modalStorage"></p>
+    <p id="modalScreen"></p>
+    <p id="modalBattery"></p>
+    <p id="modalCamera"></p>
+    <p id="modalProcessor"></p>
+    <p id="modalRam"></p>
+    <p id="modalColors"></p>
     <p id="modalPrice"></p>
   </div>
 </div>
 
 <script>
-  // Smooth scroll
-  function scrollToSection(id) {
-    document.getElementById(id).scrollIntoView({ behavior: "smooth" });
-  }
+let slideIndex = 0;
+showSlides();
 
-  // Product search
-  function searchProducts() {
-    let input = document.getElementById('searchBar').value.toLowerCase();
-    let products = document.getElementsByClassName('product-card');
-    for (let i = 0; i < products.length; i++) {
-      let name = products[i].getElementsByTagName('h3')[0].innerText.toLowerCase();
-      products[i].style.display = name.includes(input) ? "" : "none";
-    }
-  }
+function showSlides() {
+  let slides = document.getElementsByClassName("slides");
+  for(let i=0;i<slides.length;i++){ slides[i].style.display="none"; }
+  slideIndex++;
+  if(slideIndex>slides.length){ slideIndex=1; }
+  slides[slideIndex-1].style.display="block";
+  setTimeout(showSlides, 3000); // Change image every 3 seconds
+}
 
-  // Modal functionality
-  function showDetails(productName) {
-    let modal = document.getElementById('productModal');
-    let modalName = document.getElementById('modalName');
-    let modalPrice = document.getElementById('modalPrice');
-    let modalImage = document.getElementById('modalImage');
-
-    if (productName === "iPhone 13 Pro") {
-      modalName.innerText = "iPhone 13 Pro";
-      modalPrice.innerText = "Price: $499";
-      modalImage.src = "iphone.jpg";
-    } else if (productName === "Samsung Galaxy S22") {
-      modalName.innerText = "Samsung Galaxy S22";
-      modalPrice.innerText = "Price: $350";
-      modalImage.src = "samsung.jpg";
-    } else if (productName === "Dell XPS 13") {
-      modalName.innerText = "Dell XPS 13";
-      modalPrice.innerText = "Price: $800";
-      modalImage.src = "dell.jpg";
-    } else if (productName === "Samsung Smart TV") {
-      modalName.innerText = "Samsung Smart TV";
-      modalPrice.innerText = "Price: $1500";
-      modalImage.src = "tv.jpg";
-    } else if (productName === "Toyota Corolla 2018") {
-      modalName.innerText = "Toyota Corolla 2018";
-      modalPrice.innerText = "Price: $12,000";
-      modalImage.src = "corolla.jpg";
-    } else if (productName === "Honda Civic 2020") {
-      modalName.innerText = "Honda Civic 2020";
-      modalPrice.innerText = "Price: $15,000";
-      modalImage.src = "civic.jpg";
-    }
-
-    modal.style.display = "flex";
-  }
-
-  function closeModal() {
-    document.getElementById('productModal').style.display = "none";
-  }
-
-  // Slideshow functionality
-  let slideIndex = 0;
+function plusSlides(n) {
+  slideIndex += n -1;
   showSlides();
+}
 
-  function showSlides() {
-    let i;
-    let slides = document.getElementsByClassName("mySlides");
-    let dots = document.getElementsByClassName("dot");
-    for (i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";  
-    }
-    slideIndex++;
-    if (slideIndex > slides.length) {slideIndex = 1}    
-    for (i = 0; i < dots.length; i++) {
-      dots[i].className = dots[i].className.replace(" active", "");
-    }
-    slides[slideIndex-1].style.display = "block";  
-    dots[slideIndex-1].className += " active";
-    setTimeout(showSlides, 4000); // Auto-change every 4s
-  }
+function scrollToSection(id) {
+  document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+}
 
-  function plusSlides(n) {
-    slideIndex += n-1;
-    showSlides();
-  }
+function showDetails(name,img,brand,model,storage,screen,battery,processor,ram,camera,colors,price){
+  document.getElementById("modalImage").src=img;
+  document.getElementById("modalName").innerText=name;
+  document.getElementById("modalBrand").innerText="Brand: "+brand;
+  document.getElementById("modalModel").innerText="Model: "+model;
+  document.getElementById("modalStorage").innerText="Storage: "+storage;
+  document.getElementById("modalScreen").innerText="Screen: "+screen;
+  document.getElementById("modalBattery").innerText="Battery: "+battery;
+  document.getElementById("modalCamera").innerText="Camera: "+camera;
+  document.getElementById("modalProcessor").innerText="Processor: "+processor;
+  document.getElementById("modalRam").innerText="RAM: "+ram;
+  document.getElementById("modalColors").innerText="Colors: "+colors;
+  document.getElementById("modalPrice").innerText="Price: "+price;
+  document.getElementById("productModal").style.display="flex";
+}
 
-  function currentSlide(n) {
-    slideIndex = n-1;
-    showSlides();
-  }
+function closeModal() { document.getElementById("productModal").style.display="none"; }
+
+function searchProducts() {
+  let input = document.getElementById("searchInput").value.toLowerCase();
+  let cards = document.querySelectorAll(".product-card");
+  cards.forEach(card=>{
+    let name = card.querySelector("h3").innerText.toLowerCase();
+    if(name.includes(input)){ card.style.display="block"; } else { card.style.display="none"; }
+  });
+}
 </script>
 
 </body>
 </html>
+
 
 
 
